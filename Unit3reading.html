@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Grammar Quiz: Countable & Uncountable Nouns</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .reading-section {
+            font-size: 1.1rem;
+            background: #fffdf5;
+            padding: 25px;
+            border-left: 5px solid #f1c40f;
+            margin: 20px 0;
+            white-space: pre-line;
+        }
+        select {
+            padding: 5px 10px;
+            font-size: 1rem;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            background-color: #ebf5fb;
+            cursor: pointer;
+            margin: 0 2px;
+            font-weight: bold;
+        }
+        select:hover {
+            background-color: #d6eaf8;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 30px;
+        }
+        .btn-submit:hover {
+            background-color: #219150;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect { border-color: #e74c3c !important; color: #e74c3c; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>A Magical Market: Grammar Quiz</h1>
+    <p>아래 본문을 읽고, 문맥에 맞는 올바른 명사 형태(가산/불가산)를 선택하세요.</p>
+
+    <div class="reading-section">
+        Muscat is the capital city of Oman. Here, in the Muttrah neighborhood, you can find a magical marketplace, popular with 
+        <select id="q1" data-answer="tourists">
+            <option value="">--선택--</option>
+            <option value="tourist">tourist</option>
+            <option value="tourists">tourists</option>
+        </select> 
+        and locals for over 200 years.
+
+        On the market's main street, there are many 
+        <select id="q2" data-answer="shops">
+            <option value="">--선택--</option>
+            <option value="shop">shop</option>
+            <option value="shops">shops</option>
+        </select>. 
+        You can do all of your shopping here, but these 
+        <select id="q3" data-answer="places">
+            <option value="">--선택--</option>
+            <option value="place">place</option>
+            <option value="places">places</option>
+        </select> 
+        can be very expensive. It's more fun to leave the main street and explore the smaller shops in other parts of the market.
+
+        One area of the market sells old and new gold 
+        <select id="q4" data-answer="jewelry">
+            <option value="">--선택--</option>
+            <option value="jewelry">jewelry</option>
+            <option value="jewelries">jewelries</option>
+        </select>. 
+        Another area sells 
+        <select id="q5" data-answer="clothing">
+            <option value="">--선택--</option>
+            <option value="clothing">clothing</option>
+            <option value="clothings">clothings</option>
+        </select> 
+        and shoes. There are many traditional Omani 
+        <select id="q6" data-answer="items">
+            <option value="">--선택--</option>
+            <option value="item">item</option>
+            <option value="items">items</option>
+        </select> 
+        to spend your money on.
+
+        There is one area just for 
+        <select id="q7" data-answer="spices">
+            <option value="">--선택--</option>
+            <option value="spice">spice</option>
+            <option value="spices">spices</option>
+        </select> 
+        and perfume. When you enter this area, you may notice the strong smell of wood...
+    </div>
+
+    <button class="btn-submit" onclick="checkAnswers()">제출하기 (Submit)</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function checkAnswers() {
+        const questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7'];
+        let score = 0;
+        
+        questions.forEach(id => {
+            const el = document.getElementById(id);
+            if (el.value === el.getAttribute('data-answer')) {
+                score++;
+                el.style.borderColor = "#27ae60";
+            } else {
+                el.style.borderColor = "#e74c3c";
+            }
+        });
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'block';
+        resultDiv.className = 'correct';
+        resultDiv.innerHTML = `수고하셨습니다! 당신의 점수는 ${score} / ${questions.length} 입니다. <br> 
+        ${score === 7 ? "💯 완벽합니다!" : "틀린 부분을 확인하고 다시 시도해보세요."}`;
+    }
+</script>
+
+</body>
+</html>
